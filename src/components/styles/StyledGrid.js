@@ -16,7 +16,7 @@ export const StyledGrid = styled.div`
 
 export const StyledGridContent = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, minmax(100px, 1fr));
+  grid-template-columns: repeat(4, minmax(100px, 1fr));
   grid-gap: 40px;
   position: relative;
 

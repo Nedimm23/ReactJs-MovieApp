@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
-  API_KEY,
-  API_URL,
+  POPULAR_BASE_URL,
+  SEARCH_BASE_URL,
   BACKDROP_SIZE,
   IMAGE_BASE_URL,
   POSTER_SIZE
@@ -31,6 +31,23 @@ const Home = () => {
   ] = useHomeFetch();
   const [searchTerm, setSearchTerm] = useState("");
 
+  const searchMovies = search => {
+    const endpoint = search ? SEARCH_BASE_URL + search : POPULAR_BASE_URL;
+
+    setSearchTerm(search);
+    fetchMovies(endpoint);
+  };
+
+  const loadMoreMovies = () => {
+    const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${currentPage +
+      1}`;
+    const popularEndpoint = `${POPULAR_BASE_URL}&page=${currentPage + 1}`;
+
+    const endpoint = searchTerm ? searchEndpoint : popularEndpoint;
+
+    fetchMovies(endpoint);
+  };
+
   if (error) {
     return <div>Something went wrong...</div>;
   }
@@ -39,12 +56,14 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <HeroImage
-        image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
-        title={heroImage.original_title}
-        text={heroImage.overview}
-      />
-      <SearchBar />
+      {!searchTerm && (
+        <HeroImage
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
+          title={heroImage.original_title}
+          text={heroImage.overview}
+        />
+      )}
+      <SearchBar callback={searchMovies} />
       <Grid header={searchTerm ? "Search Result" : "Popular Movies"}>
         {movies.map(movie => (
           <MovieThumb
@@ -60,9 +79,10 @@ const Home = () => {
           />
         ))}
       </Grid>
-      <MovieThumb />
-      <Spinner />
-      <LoadMoreBtn />
+      {loading && <Spinner />}
+      {currentPage < totalPages && !loading && (
+        <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+      )}
     </React.Fragment>
   );
 };
