@@ -5,8 +5,11 @@
 const API_URL = "https://api.themoviedb.org/3/";
 const API_KEY = "c34399bb90262135b38f3a1ded58f460";
 
-const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&query=`;
-const POPULAR_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}`;
+const SEARCH_MOVIE_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&query=`;
+const POPULAR_MOVIE_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}`;
+
+const SEARCH_TVSHOW_BASE_URL = `${API_URL}search/tv?api_key=${API_KEY}&query=`;
+const POPULAR_TVSHOW_BASE_URL = `${API_URL}tv/popular?api_key=${API_KEY}`;
 
 const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 // Sizes: w300, w780, w1280, original
@@ -20,6 +23,8 @@ export {
   IMAGE_BASE_URL,
   BACKDROP_SIZE,
   POSTER_SIZE,
-  SEARCH_BASE_URL,
-  POPULAR_BASE_URL
+  SEARCH_MOVIE_BASE_URL,
+  POPULAR_MOVIE_BASE_URL,
+  SEARCH_TVSHOW_BASE_URL,
+  POPULAR_TVSHOW_BASE_URL
 };
