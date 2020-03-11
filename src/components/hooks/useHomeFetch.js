@@ -38,7 +38,7 @@ export const useHomeFetch = () => {
   return [{ state, loading, error }, fetchMovies];
 };
 
-export const useTvShowsFetch = () => {
+export const useTvHomeFetch = () => {
   const [state, setState] = useState({ tvShows: [] });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);

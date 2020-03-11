@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { API_URL, API_KEY } from "../../config";
 
-export const useMovieFetch = movieId => {
+export const useTvShowFetch = tvId => {
   const [state, setState] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -11,9 +11,9 @@ export const useMovieFetch = movieId => {
     setLoading(true);
 
     try {
-      const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
+      const endpoint = `${API_URL}tv/${tvId}?api_key=${API_KEY}`;
       const result = await (await fetch(endpoint)).json();
-      const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
+      const creditsEndpoint = `${API_URL}tv/${tvId}/credits?api_key=${API_KEY}`;
       const creditsResult = await (await fetch(creditsEndpoint)).json();
       const directors = creditsResult.crew.filter(
           member => member.job === 'Director'
@@ -29,23 +29,23 @@ export const useMovieFetch = movieId => {
       setError(true);
     }
     setLoading(false);
-  }, [movieId])
+  }, [tvId])
 
   useEffect(() => {
-    if (localStorage[movieId]) {
+    if (localStorage[tvId]) {
       console.log("data from localStorage");
-      setState(JSON.parse(localStorage[movieId]))
+      setState(JSON.parse(localStorage[tvId]))
       setLoading(false);
     } else {
       console.log("data from the API");
       fetchData();
     }
       
-  }, [fetchData, movieId])
+  }, [fetchData, tvId])
 
   useEffect(() => {
-    localStorage.setItem(movieId, JSON.stringify(state));
-  }, [movieId, state])
+    localStorage.setItem(tvId, JSON.stringify(state));
+  }, [tvId, state])
 
   return [state, loading, error];
 };

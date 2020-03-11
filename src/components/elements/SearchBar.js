@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import PropTypes from "prop-types";
+
 import FontAwesome from "react-fontawesome";
 
 import {
@@ -17,9 +19,8 @@ const SearchBar = ({ callback }) => {
     setState(value);
 
     timeOut.current = setTimeout(() => {
-        callback(value);
+      callback(value);
     }, 500);
-
   };
 
   return (
@@ -35,6 +36,10 @@ const SearchBar = ({ callback }) => {
       </StyledSearchBarContent>
     </StyledSearchBar>
   );
+};
+
+SearchBar.propTypes = {
+  callback: PropTypes.func
 };
 
 export default SearchBar;

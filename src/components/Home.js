@@ -14,14 +14,15 @@ import HeroImage from "./elements/HeroImage";
 import SearchBar from "./elements/SearchBar";
 import Grid from "./elements/Grid";
 import MovieThumb from "./elements/MovieThumb";
+import TvShowThumb from "./elements/TvShowThumb";
+
 import LoadMoreBtn from "./elements/LoadMoreBtn";
 import Spinner from "./elements/Spinner";
+import NoImage from "./images/no_image.jpg";
 
 // Custom Hook
-import { useHomeFetch, useTvShowsFetch } from "./hooks/useHomeFetch";
+import { useHomeFetch, useTvHomeFetch } from "./hooks/useHomeFetch";
 
-import NoImage from "./images/no_image.jpg";
-import TvShowThumb from "./elements/TvShowThumb";
 
 const Home = () => {
   const [
@@ -40,7 +41,7 @@ const Home = () => {
   //     error
   //   },    
   //   fetchTvShows
-  // ] = useTvShowsFetch();
+  // ] = useTvHomeFetch();
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -120,7 +121,7 @@ const Home = () => {
                 ? `${IMAGE_BASE_URL}${POSTER_SIZE}${tvShow.poster_path}`
                 : NoImage
             }
-            tvShowId={tvShow.id}
+            tvId={tvShow.id}
             tvShowName={tvShow.original_title}
           />
         ))}
