@@ -1,24 +1,23 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Link } from '@reach/router';
+import PropTypes from 'prop-types';
 
-import { Link } from "@reach/router";
-import { StyledNavigation } from "../styles/StyledNavigation";
+import { StyledNavigation } from '../styles/StyledNavigation';
 
-const Navigation = ({ movie, tvShow }) => (
+const Navigation = ({ movie }) => (
   <StyledNavigation>
     <div className="navigation-content">
       <Link to="/">
         <p>Home</p>
       </Link>
       <p>|</p>
-      <p>{movie || tvShow}</p>
+      <p>{movie}</p>
     </div>
   </StyledNavigation>
 );
 
 Navigation.propTypes = {
   movie: PropTypes.string,
-  tvShow: PropTypes.string
-};
+}
 
 export default Navigation;

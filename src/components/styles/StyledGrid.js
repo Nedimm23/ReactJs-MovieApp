@@ -20,19 +20,6 @@ export const StyledGridContent = styled.div`
   grid-gap: 40px;
   position: relative;
 
-  .grid-element {
-    animation: animateGrid 0.5s;
-  }
-
-  @keyframes animateGrid {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
   @media screen and (max-width: 1024px) {
     grid-template-columns: repeat(4, minmax(100px, 1fr));
   }
